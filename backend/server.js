@@ -13,7 +13,7 @@ const app = express();
 // Allow only Netlify frontend in production
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://your-netlify-site.netlify.app' // <-- Replace with your Netlify URL
+  'https://whitey001.netlify.app' // <-- Replace with your Netlify URL
 ];
 app.use(cors({
   origin: allowedOrigins,
