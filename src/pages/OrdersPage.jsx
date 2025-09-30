@@ -3,6 +3,8 @@ import axios from "axios";
 import ThemedButton from "../components/ThemedButton";
 import Alert from "../components/Alert";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,7 @@ export default function OrdersPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:5000/api/orders/my", {
+      .get(`${API_URL}/api/orders/my`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

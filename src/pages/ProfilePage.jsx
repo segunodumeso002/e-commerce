@@ -2,6 +2,8 @@ import { useUser } from "../context/UserContext";
 import { useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function ProfilePage() {
   const { user, setUser } = useUser();
   const [form, setForm] = useState({
@@ -23,7 +25,7 @@ export default function ProfilePage() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        "${API_URL}/api/auth/profile",
+        `${API_URL}/api/auth/profile`,
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -41,7 +43,7 @@ export default function ProfilePage() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "${API_URL}/api/auth/change-password",
+        `${API_URL}/api/auth/change-password`,
         { password },
         { headers: { Authorization: `Bearer ${token}` } }
       );

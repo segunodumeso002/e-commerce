@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Alert from "../components/Alert";
 import ThemedButton from "../components/ThemedButton";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function RegisterPage() {
   const [form, setForm] = useState({
     firstname: "",

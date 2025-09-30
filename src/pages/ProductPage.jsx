@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCart } from "../context/CartContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);

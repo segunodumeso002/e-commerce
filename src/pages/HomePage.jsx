@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const categories = ["All", "Electronics", "Books", "Fashion"];
 
 export default function HomePage() {

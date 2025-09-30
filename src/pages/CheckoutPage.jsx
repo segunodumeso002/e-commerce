@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import ThemedButton from "../components/ThemedButton";
 import Alert from "../components/Alert";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function CheckoutPage() {
   const { cart, clearCart } = useCart();
   const { user } = useUser();
@@ -25,7 +27,7 @@ export default function CheckoutPage() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "${API_URL}/api/orders",
+        `${API_URL}/api/orders`,
         {
           items: cart,
           shipping: { ...shipping, type: shippingType },
