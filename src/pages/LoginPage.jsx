@@ -5,6 +5,8 @@ import { useUser } from "../context/UserContext";
 import Alert from "../components/Alert";
 import ThemedButton from "../components/ThemedButton";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function LoginPage() {
   const [form, setForm] = useState({ emailOrUsername: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", form);
+      const res = await axios.post(`${API_URL}/api/auth/login`, form);
       login(res.data.user, res.data.token);
       setAlert({ type: "success", message: "Login successful!" });
       setTimeout(() => {

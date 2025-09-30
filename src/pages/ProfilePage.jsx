@@ -23,7 +23,7 @@ export default function ProfilePage() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        "http://localhost:5000/api/auth/profile",
+        "${API_URL}/api/auth/profile",
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -41,7 +41,7 @@ export default function ProfilePage() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:5000/api/auth/change-password",
+        "${API_URL}/api/auth/change-password",
         { password },
         { headers: { Authorization: `Bearer ${token}` } }
       );

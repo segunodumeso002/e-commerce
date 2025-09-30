@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useUser } from "../context/UserContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function AdminDashboard() {
   const { user } = useUser();
   const [products, setProducts] = useState([]);
@@ -15,24 +17,24 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     // Fetch products
-    axios.get("http://localhost:5000/api/products", {
+    axios.get(`${API_URL}/api/products`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }).then(res => setProducts(res.data));
 
     // Fetch orders
-    axios.get("http://localhost:5000/api/orders", {
+    axios.get(`${API_URL}/api/orders`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }).then(res => setOrders(res.data));
 
-    // Fetch users (if you have an endpoint)
-    axios.get("http://localhost:5000/api/users", {
+    // Fetch users
+    axios.get(`${API_URL}/api/users`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }).then(res => setUsers(res.data));
   }, []);
 
   async function fetchProducts() {
     const token = localStorage.getItem("token");
-    const res = await axios.get("http://localhost:5000/api/products", {
+    const res = await axios.get(`${API_URL}/api/products`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setProducts(res.data);
@@ -41,7 +43,7 @@ export default function AdminDashboard() {
   async function handleAddProduct(e) {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    await axios.post("http://localhost:5000/api/products", form, {
+    await axios.post(`${API_URL}/api/products`, form, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setForm({ name: "", price: "", description: "" });
@@ -51,7 +53,7 @@ export default function AdminDashboard() {
   async function handleEditProduct(e) {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    await axios.put(`http://localhost:5000/api/products/${editingId}`, form, {
+    await axios.put(`${API_URL}/api/products/${editingId}`, form, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setEditingId(null);
@@ -61,7 +63,7 @@ export default function AdminDashboard() {
 
   async function handleDeleteProduct(id) {
     const token = localStorage.getItem("token");
-    await axios.delete(`http://localhost:5000/api/products/${id}`, {
+    await axios.delete(`${API_URL}/api/products/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     fetchProducts();
@@ -69,11 +71,11 @@ export default function AdminDashboard() {
 
   async function handleShipOrder(id) {
     const token = localStorage.getItem("token");
-    await axios.put(`http://localhost:5000/api/orders/${id}`, { status: "shipped" }, {
+    await axios.put(`${API_URL}/api/orders/${id}`, { status: "shipped" }, {
       headers: { Authorization: `Bearer ${token}` }
     });
     // Refresh orders
-    const res = await axios.get("http://localhost:5000/api/orders", {
+    const res = await axios.get(`${API_URL}/api/orders`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setOrders(res.data);
@@ -98,13 +100,13 @@ export default function AdminDashboard() {
   async function handleEditUser(e) {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    await axios.put(`http://localhost:5000/api/users/${editingUserId}`, userForm, {
+    await axios.put(`${API_URL}/api/users/${editingUserId}`, userForm, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setEditingUserId(null);
     setUserForm({ firstname: "", lastname: "", username: "", email: "", is_admin: false });
     // Refresh users
-    const res = await axios.get("http://localhost:5000/api/users", {
+    const res = await axios.get(`${API_URL}/api/users`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setUsers(res.data);
@@ -112,11 +114,11 @@ export default function AdminDashboard() {
 
   async function handleDeleteUser(id) {
     const token = localStorage.getItem("token");
-    await axios.delete(`http://localhost:5000/api/users/${id}`, {
+    await axios.delete(`${API_URL}/api/users/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     // Refresh users
-    const res = await axios.get("http://localhost:5000/api/users", {
+    const res = await axios.get(`${API_URL}/api/users`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setUsers(res.data);

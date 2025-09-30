@@ -25,7 +25,7 @@ export default function CheckoutPage() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5000/api/orders",
+        "${API_URL}/api/orders",
         {
           items: cart,
           shipping: { ...shipping, type: shippingType },

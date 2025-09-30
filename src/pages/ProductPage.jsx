@@ -11,7 +11,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`${API_URL}/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         setLoading(false);

@@ -24,7 +24,7 @@ export default function RegisterPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/register", form);
+      await axios.post(`${API_URL}/api/auth/register`, form);
       setAlert({ type: "success", message: "Registration successful! Please login." });
       setTimeout(() => navigate("/login"), 1200);
     } catch {
