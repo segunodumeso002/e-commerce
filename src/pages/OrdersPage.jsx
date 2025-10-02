@@ -17,7 +17,7 @@ export default function OrdersPage() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setOrders(res.data);
+        setOrders(Array.isArray(res.data) ? res.data : []);
         setLoading(false);
       })
       .catch(() => {

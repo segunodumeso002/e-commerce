@@ -19,17 +19,17 @@ export default function AdminDashboard() {
     // Fetch products
     axios.get(`${API_URL}/api/products`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    }).then(res => setProducts(res.data));
+    }).then(res => setProducts(Array.isArray(res.data) ? res.data : []));
 
     // Fetch orders
     axios.get(`${API_URL}/api/orders`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    }).then(res => setOrders(res.data));
+    }).then(res => setOrders(Array.isArray(res.data) ? res.data : []));
 
     // Fetch users
     axios.get(`${API_URL}/api/users`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    }).then(res => setUsers(res.data));
+    }).then(res => setUsers(Array.isArray(res.data) ? res.data : []));
   }, []);
 
   async function fetchProducts() {

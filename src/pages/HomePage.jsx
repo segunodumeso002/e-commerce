@@ -15,7 +15,7 @@ export default function HomePage() {
     fetch(`${API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
-        setProducts(data);
+        setProducts(Array.isArray(data) ? data : []);
         setLoading(false);
       });
   }, []);
