@@ -3,6 +3,7 @@ import { useCart } from "../context/CartContext";
 import { useUser } from "../context/UserContext";
 import { useState } from "react";
 
+export default function Navbar() {
   const { cart } = useCart();
   const { user, logout } = useUser();
   const [open, setOpen] = useState(false);
