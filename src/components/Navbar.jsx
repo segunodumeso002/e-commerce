@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useUser } from "../context/UserContext";
 import { useState } from "react";
 
-export default function Navbar() {
   const { cart } = useCart();
   const { user, logout } = useUser();
   const [open, setOpen] = useState(false);
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const navigate = useNavigate();
 
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-blue-700 via-pink-500 to-yellow-400 text-white shadow-lg">
@@ -31,7 +31,15 @@ export default function Navbar() {
             <>
               <Link to="/profile" className="hover:text-yellow-200 transition">Profile</Link>
               <span className="font-semibold hidden sm:inline">Welcome, {user.firstname}</span>
-              <button onClick={logout} className="bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition">Logout</button>
+              <button
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+                className="bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition"
+              >
+                Logout
+              </button>
             </>
           ) : (
             <>

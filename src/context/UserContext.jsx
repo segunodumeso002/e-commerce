@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
 
@@ -9,7 +8,6 @@ export function useUser() {
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -35,7 +33,6 @@ export function UserProvider({ children }) {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    navigate("/"); // Redirect to home page
   }
 
   return (
