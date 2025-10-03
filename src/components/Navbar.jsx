@@ -14,10 +14,27 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-blue-700 via-pink-500 to-yellow-400 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center py-4 px-2">
         <Link to="/" className="font-extrabold text-3xl tracking-wide drop-shadow-lg hover:scale-105 transition-transform duration-200">MyStore</Link>
-        <button className="md:hidden modern-btn" onClick={() => setOpen(!open)}>
-          <span className="material-icons">menu</span>
+        <button
+          className="md:hidden focus:outline-none"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
+          <span className="block w-8 h-8 relative">
+            <span
+              className={`absolute left-0 top-2 w-8 h-1 bg-white rounded transition-all duration-300 ${open ? 'rotate-45 top-4' : ''}`}
+            ></span>
+            <span
+              className={`absolute left-0 top-4 w-8 h-1 bg-white rounded transition-all duration-300 ${open ? 'opacity-0' : ''}`}
+            ></span>
+            <span
+              className={`absolute left-0 top-6 w-8 h-1 bg-white rounded transition-all duration-300 ${open ? '-rotate-45 top-4' : ''}`}
+            ></span>
+          </span>
         </button>
-        <div className={`flex-col md:flex-row gap-6 items-center md:flex ${open ? "flex" : "hidden"} md:static absolute top-full left-0 w-full md:w-auto glass-card md:bg-none`}>
+        <div
+          className={`flex-col md:flex-row gap-6 items-center md:flex glass-card md:bg-none transition-all duration-500 ease-in-out ${open ? 'flex opacity-100 translate-y-0' : 'hidden opacity-0 -translate-y-4'} md:static absolute top-full left-0 w-full md:w-auto`}
+          style={{ zIndex: 100 }}
+        >
           <Link to="/cart" className="relative font-semibold modern-btn hover:scale-105 transition-transform duration-200">
             Cart
             {cartCount > 0 && (

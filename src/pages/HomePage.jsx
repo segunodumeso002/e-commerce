@@ -53,7 +53,7 @@ export default function HomePage() {
       </aside>
       {/* Product Grid */}
       <div className="flex-1">
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 justify-items-center">
           {loading ? (
             <div className="col-span-full text-center text-lg text-gray-500">Loading...</div>
           ) : filtered.length === 0 ? (
