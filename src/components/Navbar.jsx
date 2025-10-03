@@ -32,7 +32,7 @@ export default function Navbar() {
           </span>
         </button>
         <div
-          className={`flex-col md:flex-row gap-6 items-center md:flex glass-card md:bg-none transition-all duration-500 ease-in-out ${open ? 'flex opacity-100 translate-y-0' : 'hidden opacity-0 -translate-y-4'} md:static absolute top-full left-0 w-full md:w-auto`}
+          className={`flex-col md:flex-row gap-6 items-center glass-card md:bg-none transition-all duration-500 ease-in-out ${open ? 'flex opacity-100 translate-y-0' : 'hidden opacity-0 -translate-y-4'} md:flex md:opacity-100 md:translate-y-0 md:static absolute top-full left-0 w-full md:w-auto`}
           style={{ zIndex: 100 }}
         >
           <Link to="/cart" className="relative font-semibold modern-btn hover:scale-105 transition-transform duration-200">

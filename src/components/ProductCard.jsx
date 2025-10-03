@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
         <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-600 mb-2">{product.category}</span>
       )}
       <p className="text-gray-700 mb-2 text-lg font-semibold">${product.price}</p>
-      <ThemedButton onClick={() => addToCart(product)} className="w-full mt-2 modern-btn">
+      <ThemedButton onClick={() => addToCart(product)} className="mt-2 modern-btn" style={{ width: '70%' }}>
         Add to Cart
       </ThemedButton>
     </div>
