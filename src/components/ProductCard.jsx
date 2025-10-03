@@ -7,11 +7,11 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
 
   return (
-    <div className="glass-card flex flex-col items-center justify-between hover:scale-105 hover:shadow-2xl transition-transform duration-200" style={{ width: '320px', height: '400px', fontFamily: 'Poppins, sans-serif' }}>
+  <div className="glass-card flex flex-col items-center justify-between hover:scale-105 hover:shadow-2xl transition-transform duration-200" style={{ width: '270px', height: '340px', fontFamily: 'Poppins, sans-serif' }}>
       <img
-        src={product.image || "https://placehold.co/300x300?text=Product"}
+        src={product.image || "https://placehold.co/250x250?text=Product"}
         alt={product.name}
-        className="mb-2 rounded-xl object-cover w-56 h-56 shadow-lg hover:scale-110 transition-transform duration-200"
+        className="mb-2 rounded-xl object-cover w-40 h-40 shadow-lg hover:scale-110 transition-transform duration-200"
         onClick={() => navigate(`/product/${product.id}`)}
         style={{ cursor: "pointer" }}
       />
