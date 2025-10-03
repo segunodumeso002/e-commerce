@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminDashboard() {
   const { user } = useUser();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
@@ -16,6 +18,11 @@ export default function AdminDashboard() {
   const [userForm, setUserForm] = useState({ firstname: "", lastname: "", username: "", email: "", is_admin: false });
 
   useEffect(() => {
+    // Redirect to home if not logged in or not admin
+    if (!user || !user.is_admin) {
+      navigate("/");
+      return;
+    }
     // Fetch products
     axios.get(`${API_URL}/api/products`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
@@ -30,7 +37,7 @@ export default function AdminDashboard() {
     axios.get(`${API_URL}/api/users`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }).then(res => setUsers(Array.isArray(res.data) ? res.data : []));
-  }, []);
+  }, [user, navigate]);
 
   async function fetchProducts() {
     const token = localStorage.getItem("token");
