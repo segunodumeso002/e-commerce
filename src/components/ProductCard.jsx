@@ -7,15 +7,15 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
 
   return (
-    <div className="glass-card flex flex-col items-center hover:scale-105 hover:shadow-2xl transition-transform duration-200">
+    <div className="glass-card flex flex-col items-center justify-between hover:scale-105 hover:shadow-2xl transition-transform duration-200" style={{ width: '260px', height: '340px', fontFamily: 'Poppins, sans-serif' }}>
       <img
-        src={product.image || "https://placehold.co/150x150?text=Product"}
+        src={product.image || "https://placehold.co/200x200?text=Product"}
         alt={product.name}
-        className="mb-2 rounded-xl h-40 object-cover w-full shadow-lg hover:scale-110 transition-transform duration-200"
+        className="mb-2 rounded-xl object-cover w-40 h-40 shadow-lg hover:scale-110 transition-transform duration-200"
         onClick={() => navigate(`/product/${product.id}`)}
         style={{ cursor: "pointer" }}
       />
-      <h3 className="font-bold text-xl text-indigo-700 mb-1">{product.name}</h3>
+      <h3 className="font-bold text-lg text-indigo-700 mb-1 text-center truncate w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>{product.name}</h3>
       {product.category && (
         <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-600 mb-2">{product.category}</span>
       )}
