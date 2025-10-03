@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
   const [tab, setTab] = useState("products");
-  const [form, setForm] = useState({ name: "", price: "", description: "" });
+  const [form, setForm] = useState({ name: "", price: "", description: "", image: "", category: "" });
   const [editingId, setEditingId] = useState(null);
   const [editingUserId, setEditingUserId] = useState(null);
   const [userForm, setUserForm] = useState({ firstname: "", lastname: "", username: "", email: "", is_admin: false });
@@ -142,7 +142,7 @@ export default function AdminDashboard() {
       {tab === "products" && (
         <div>
           <h2 className="font-semibold mb-2">Manage Products</h2>
-          <form onSubmit={editingId ? handleEditProduct : handleAddProduct} className="mb-4 flex gap-2">
+          <form onSubmit={editingId ? handleEditProduct : handleAddProduct} className="mb-4 flex flex-wrap gap-2">
             <input
               name="name"
               value={form.name}
@@ -167,11 +167,33 @@ export default function AdminDashboard() {
               placeholder="Description"
               className="px-2 py-1 border rounded"
             />
+            <input
+              name="image"
+              value={form.image}
+              onChange={e => setForm({ ...form, image: e.target.value })}
+              placeholder="Image URL"
+              className="px-2 py-1 border rounded"
+              required
+            />
+            <select
+              name="category"
+              value={form.category}
+              onChange={e => setForm({ ...form, category: e.target.value })}
+              className="px-2 py-1 border rounded"
+              required
+            >
+              <option value="">Select Category</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Books">Books</option>
+              <option value="Home">Home</option>
+              <option value="Other">Other</option>
+            </select>
             <button className="bg-blue-600 text-white px-4 py-1 rounded" type="submit">
               {editingId ? "Update" : "Add"}
             </button>
             {editingId && (
-              <button className="bg-gray-400 text-white px-4 py-1 rounded" type="button" onClick={() => { setEditingId(null); setForm({ name: "", price: "", description: "" }); }}>
+              <button className="bg-gray-400 text-white px-4 py-1 rounded" type="button" onClick={() => { setEditingId(null); setForm({ name: "", price: "", description: "", image: "", category: "" }); }}>
                 Cancel
               </button>
             )}
