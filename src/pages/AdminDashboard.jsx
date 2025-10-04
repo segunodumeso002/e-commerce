@@ -227,7 +227,7 @@ export default function AdminDashboard() {
                     <span>
                       Items:
                       <ul>
-                        {order.items.map((item, idx) => (
+                        {(order.items || []).map((item, idx) => (
                           <li key={idx}>{item.name} x {item.quantity}</li>
                         ))}
                       </ul>

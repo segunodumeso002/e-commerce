@@ -32,8 +32,8 @@ export default function Navbar() {
           </span>
         </button>
         <div
-          className={`flex-col md:flex-row gap-6 items-center md:flex ${open ? "flex" : "hidden"} md:static absolute top-full left-0 w-full md:w-auto glass-card md:bg-none`}
-          style={{ zIndex: 100 }}
+          className={`flex-col md:flex-row gap-6 items-center md:flex ${open ? "flex" : "hidden"} md:static absolute top-full left-0 w-full md:w-auto md:bg-none`}
+          style={{ zIndex: 100, background: open ? '#fff' : undefined, boxShadow: open ? '0 4px 24px rgba(0,0,0,0.08)' : undefined, borderRadius: open ? '0 0 1.5rem 1.5rem' : undefined }}
         >
           <Link to="/cart" className="relative font-semibold modern-btn hover:scale-105 transition-transform duration-200 text-indigo-600">
             Cart

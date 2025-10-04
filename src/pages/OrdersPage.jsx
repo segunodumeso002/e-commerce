@@ -60,7 +60,7 @@ export default function OrdersPage() {
               <div className="mb-2">
                 <span className="font-semibold">Items:</span>
                 <ul className="ml-4 list-disc">
-                  {order.items.map((item, idx) => (
+                  {(order.items || []).map((item, idx) => (
                     <li key={idx} className="text-gray-700">
                       {item.name}{" "}
                       <span className="font-bold">x {item.quantity}</span>
